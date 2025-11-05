@@ -25,7 +25,7 @@ Complexidade Ciclomatica = 4
 
 # CAMINHOS BASICOS
 
-CAMINHO (1) = 1-2-3-4-5   // Login e senha corretos
-CAMINHO (2) = 1-2-3-4-6   // Login incorreto
+CAMINHO (1) = 1-2-3-4-5   // Quando login e senha esta correto
+CAMINHO (2) = 1-2-3-4-6   // Quando  estão incorreto
 CAMINHO (3) = 1-2-3-7     // Erro ao executar SQL
-CAMINHO (4) = 1-2-7       // Falha na conexão com o banco
+CAMINHO (4) = 1-2-7       // Quando a conexão com o banco falha antes de executar
