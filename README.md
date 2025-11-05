@@ -9,7 +9,7 @@
 6 -> return false  
 7 -> catch (erro)
 
-# FLUSO:
+# FLUXO:
 1-> 2-> 3-> 4-> 5
 1-> 2-> 3-> 4-> 6
 1-> 2-> 3-> 7
