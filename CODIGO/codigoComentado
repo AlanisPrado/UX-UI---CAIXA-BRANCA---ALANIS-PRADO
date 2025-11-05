@@ -1,0 +1,53 @@
+package login;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class User {
+
+    // Método pra fazer a conexão com o banco de dados
+    public Connection conectarBD() {
+        Connection conn = null;
+        try {
+            // Carrega o driver do MySQL
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            // Caminho do banco com usuário e senha
+            String url = "jdbc:mysql://127.0.0.1/test?user=lopes&password=123";
+
+            // Tenta conectar
+            conn = DriverManager.getConnection(url);
+        } catch (Exception e) {
+            // Mostra erro caso não consiga conectar
+            System.out.println("Erro ao conectar: " + e.getMessage());
+        }
+        // Retorna a conexão (ou null se deu erro)
+        return conn;
+    }
+
+    // Método que verifica se o usuário e senha existem no banco
+    public boolean verificarUsuario(String login, String senha) {
+        boolean result = false; // começa com falso
+        Connection conn = conectarBD(); // chama o método de conexão
+        // comando SQL que vai procurar o usuário e senha
+        String sql = "SELECT nome FROM usuarios WHERE login='" + login + "' AND senha='" + senha + "'";
+
+        try {
+            // Cria o comando SQL
+            Statement st = conn.createStatement();
+            // Executa o comando
+            ResultSet rs = st.executeQuery(sql);
+            // Se achar o usuário, muda o resultado pra verdadeiro
+            if (rs.next()) {
+                result = true;
+            }
+        } catch (Exception e) {
+            // Caso dê algum erro, mostra no console
+            System.out.println("Erro ao verificar usuário: " + e.getMessage());
+        }
+        // Retorna verdadeiro se achou, falso se não achou
+        return result;
+    }
+}
